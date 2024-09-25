@@ -13,18 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-$team = [
-    ['name' => 'Hodor', 'position' => 'programmer'],
-    ['name' => 'Joker', 'position' => 'CEO'],
-    ['name' => 'Elvis', 'position' => 'CTO'],
-];
-
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('about', function () use ($team) {
-    // BEGIN (write your solution here)
-    return view('about', ['team' => $team]);
-    // END
+Route::get('about', [\App\Http\Controllers\PageController::class, 'about']);
+
+Route::get('articles', function () {
+    $objData = \App\Models\Article::all();
+    return view('articles', ['data' => $objData]);
 });
