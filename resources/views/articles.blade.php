@@ -6,5 +6,4 @@
         <h1>{{$item->name}}</h1>
         <p>{{$item->body}}</p>
     @endforeach
-    <p></p>
 @endsection

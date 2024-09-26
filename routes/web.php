@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('about', [\App\Http\Controllers\PageController::class, 'about']);
+Route::get('about', [Controllers\PageController::class, 'about']);
 
-Route::get('articles', function () {
-    $objData = \App\Models\Article::all();
-    return view('articles', ['data' => $objData]);
-});
+Route::get('articles', [Controllers\ArticlesController::class, 'articles'])->name('arc');
