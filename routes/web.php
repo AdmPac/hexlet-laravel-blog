@@ -17,7 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('about', [Controllers\PageController::class, 'about']);
 
+// routes: articles
 Route::get('articles', [Controllers\ArticlesController::class, 'articles'])->name('arc');
+Route::post('articles', [Controllers\ArticlesController::class, 'store'])->name('articles.store');
+
+Route::get('articles/create', [Controllers\ArticlesController::class, 'create'])->name('create');
+
 Route::get('articles/{id}', [Controllers\ArticlesController::class, 'articles_id'])->name('arc_id');
