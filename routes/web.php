@@ -20,3 +20,4 @@ Route::get('/', function () {
 Route::get('about', [Controllers\PageController::class, 'about']);
 
 Route::get('articles', [Controllers\ArticlesController::class, 'articles'])->name('arc');
+Route::get('articles/{id}', [Controllers\ArticlesController::class, 'articles_id'])->name('arc_id');
