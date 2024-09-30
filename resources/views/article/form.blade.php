@@ -9,7 +9,7 @@
     </div>
 @endif
 
-{{html()->label('Имя', 'name')}}
-{{html()->text('name')}}
-{{html()->label('Текст', 'body')}}
-{{html()->textarea('body')}}
+<p>{{html()->label('Имя', 'name')}}</p>
+<p>{{html()->text('name')}}</p>
+<p>{{html()->label('Текст', 'body')}}</p>
+<p>{{html()->textarea('body')}}</p>
