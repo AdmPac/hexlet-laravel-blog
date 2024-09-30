@@ -16,9 +16,35 @@ class ArticlesController extends Controller
         $data[] = \App\Models\Article::findOrFail($id);
         return view('article.articles', compact('data'));
     }
+    
     public function create() {
         $article = new \App\Models\Article();
         return view('article.create', compact('article'));       
+    }
+
+    public function edit($id) {
+        $article = \App\Models\Article::findOrFail($id);
+        return view('article.edit', compact('article'));       
+    }
+
+    public function destroy($id)
+    {
+        $category = \App\Models\Article::find($id);
+        if ($category) {
+            $category->delete();
+        }
+        return redirect()->route('arc');
+    }
+
+    public function update(Request $request) {
+        $article = \App\Models\Article::findOrFail($request->id);
+        $data = $request->validate([
+            'name' => 'required|unique:articles,name,'.$article->id,
+            'body' => 'required|min:3',
+        ]);
+        $article->fill($data);
+        $article->save();
+        return redirect()->route('arc');
     }
 
     public function store(Request $request) {
