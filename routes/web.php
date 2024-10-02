@@ -17,7 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('about', [Controllers\PageController::class, 'about']);
-
 Route::resource('articles', Controllers\ArticleController::class);
+Route::get('test', [Controllers\TestController::class, 'index']);
