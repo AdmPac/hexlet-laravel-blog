@@ -13,9 +13,8 @@ use \App\Http\Controllers;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::resource('articles', Controllers\ArticleController::class);
-Route::get('test', [Controllers\TestController::class, 'index']);
+Route::resource('/articles', Controllers\ArticleController::class);
+Route::get('/create', [Controllers\LoginController::class, 'create'])->name('login.create');
+ 
+Route::post('/create', [Controllers\LoginController::class, 'store'])->name('login.store');
