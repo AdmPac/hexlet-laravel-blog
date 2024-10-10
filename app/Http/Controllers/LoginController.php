@@ -9,12 +9,16 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function index() 
-    {   
+    {
         return view('login.index');
     }
 
     public function login() 
-    {   
+    {
+        if (Auth::check()) {
+            $id = Auth::id();
+            return redirect()->route('user.index', $id);
+        }
         return view('login.login');
     }
 
@@ -33,6 +37,10 @@ class LoginController extends Controller
 
     public function create()
     {
+        if (Auth::check()) {
+            $id = Auth::id();
+            return redirect()->route('user.index', $id);
+        }
         $user = new User();
         return view('login.create', compact('user'));
     }
