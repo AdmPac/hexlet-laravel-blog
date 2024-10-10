@@ -21,7 +21,7 @@ Route::controller(Controllers\LoginController::class)->group(function () {
 
 Route::post('/create', [Controllers\LoginController::class, 'store'])->name('login.store');
 
-Route::get('/login', [Controllers\LoginController::class, 'login'])->name('login.login');
-Route::post('/login', [Controllers\LoginController::class, 'auth'])->name('auth');
+Route::get('/login', [Controllers\LoginController::class, 'login'])->name('login');
+Route::post('/login', [Controllers\LoginController::class, 'auth'])->name('login.auth');
 
 Route::get('/user/{id}', [Controllers\PageController::class, 'person'])->middleware('auth')->name('user.index');
