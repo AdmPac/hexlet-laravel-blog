@@ -36,7 +36,7 @@
         </div>
         <div class="mt-12 flex flex-col items-center">
           <h1 class="text-2xl xl:text-3xl font-extrabold">
-            Регистрация в Nexus
+            Вход в Nexus
           </h1>
           <div class="w-full flex-1 mt-8">
             <div class="flex flex-col items-center">
@@ -89,16 +89,16 @@
               <div
                 class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2"
               >
-                Или зарегистрируйтесь через email
+                Или войдите через email
               </div>
             </div>
 
             <div class="mx-auto max-w-xs">
               
-              @if($errors->any()) 
+              @if($errors->any())
                 @foreach($errors->all() as $error) 
                   <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                    <strong class="font-bold">Error!</strong>
+                    <strong class="font-bold">Возникла ошибка</strong>
                     <span class="block sm:inline">{{ $error }}</span>
                   </div>
                   <div class="mb-4"></div>
@@ -106,13 +106,13 @@
               @endif
               <div class="flex items-center justify-center my-4">
                 <a
-                  href="{{ route('login.login') }}"
+                  href="{{ route('login.create') }}"
                   class="text-sm text-gray-600 hover:text-gray-900"
                 >
-                  Уже есть аккаунт?
+                  Нет аккаунта? Зарегистрируйтесь
                 </a>
               </div>
-              {{Form::open(['url' => route('login.store'), 'method' => 'POST'])}}
+              {{Form::open(['url' => route('login.auth'), 'method' => 'POST'])}}
               <input
                 name="email"
                 class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
@@ -141,9 +141,19 @@
                   <path d="M20 8v6M23 11h-6" />
                 </svg>
                 <span class="ml-3">
-                  Sign Up
+                  Войти
                 </span>
               </button>
+              {{-- <p class="mt-6 text-xs text-gray-600 text-center">
+                I agree to abide by templatana's
+                <a href="#" class="border-b border-gray-500 border-dotted">
+                  Terms of Service
+                </a>
+                and its
+                <a href="#" class="border-b border-gray-500 border-dotted">
+                  Privacy Policy
+                </a>
+              </p> --}}
               {{Form::close()}}
             </div>
           </div>
