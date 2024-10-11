@@ -106,7 +106,7 @@
               @endif
               <div class="flex items-center justify-center my-4">
                 <a
-                  href="{{ route('login.login') }}"
+                  href="{{ route('login') }}"
                   class="text-sm text-gray-600 hover:text-gray-900"
                 >
                   Уже есть аккаунт?
