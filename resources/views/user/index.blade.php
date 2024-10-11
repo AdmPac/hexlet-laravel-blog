@@ -276,7 +276,7 @@
                   <li class="z-30 flex-auto text-center">
                     <a class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-colors ease-in-out border-0 rounded-lg bg-inherit text-slate-700" nav-link href="javascript:;" role="tab" aria-selected="false">
                       <i class="ni ni-settings-gear-65"></i>
-                      <span class="ml-2">Settings</span>
+                      <span class="ml-2">Настройки</span>
                     </a>
                   </li>
                 </ul>
@@ -288,84 +288,164 @@
       <div class="w-full p-6 mx-auto">
         <div class="flex flex-wrap -mx-3">
           <div class="w-full max-w-full px-3 shrink-0 md:w-8/12 md:flex-0">
+            {{Form::open(['url' => route('user.store', $id), 'method' => 'PATCH'])}}
+            @if ($errors->any())
+              @foreach ($errors->all() as $error)
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                  <strong class="font-bold">Возникла ошибка</strong>
+                  <span class="block sm:inline">{{ $error }}</span>
+                </div>
+              @endforeach            
+            @endif
+            @if(session()->has('success'))
+                  
+              <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <span class="block sm:inline">{{ session()->get('success') }}</span>
+              </div>
+            @endif
             <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
               <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
                 <div class="flex items-center">
-                  <p class="mb-0 dark:text-white/80">Edit Profile</p>
-                  <button type="button" class="inline-block px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">Settings</button>
+                  <p class="mb-0 dark:text-white/80">Изменение профиля</p>
+                  @if($my_page)
+                  <input type="submit" class="inline-block px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85" value="Сохранить">
+                  @endif
                 </div>
               </div>
               <div class="flex-auto p-6">
-                <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-sm">User Information</p>
+                <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-sm">Информация о пользователе</p>
                 <div class="flex flex-wrap -mx-3">
                   <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                     <div class="mb-4">
-                      <label for="username" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Username</label>
-                      <input type="text" name="username" value="lucky.jesse" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
+                      <label for="nickname" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Никнейм</label>
+                      <input {{ $my_page ? '' : 'readonly' }} type="text" name="nickname" value="{{ $user->nickname }}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
                     </div>
                   </div>
                   <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                     <div class="mb-4">
-                      <label for="email" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Email address</label>
-                      <input type="email" name="email" value="jesse@example.com" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
+                      <label for="email" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Email</label>
+                      <input {{ $my_page ? '' : 'readonly' }} type="email" name="email" value="{{$user->email}}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
                     </div>
                   </div>
                   <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                     <div class="mb-4">
-                      <label for="first name" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">First name</label>
-                      <input type="text" name="first name" value="Jesse" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
+                      <label for="name" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Имя</label>
+                      <input {{ $my_page ? '' : 'readonly' }} type="text" name="name" value="{{$user->name}}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
                     </div>
                   </div>
                   <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                     <div class="mb-4">
-                      <label for="last name" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Last name</label>
-                      <input type="text" name="last name" value="Lucky" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
+                      <label for="lastname" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Фамилия</label>
+                      <input {{ $my_page ? '' : 'readonly' }} type="text" name="lastname" value="{{$user->lastname}}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
+                    </div>
+                  </div>
+                  <div class="w-full max-w-full px-3 shrink-0 md:w-1/12 md:flex-0">
+                    <div class="mb-4">
+
+                      <label for="age" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Возраст</label>
+                      <input {{ $my_page ? '' : 'readonly' }} type="text" name="age" value="{{$user->age}}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
                     </div>
                   </div>
                 </div>
                 <hr class="h-px mx-0 my-4 bg-transparent border-0 opacity-25 bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent " />
                 
-                <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-sm">Contact Information</p>
+                <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-sm">Контактная информация</p>
                 <div class="flex flex-wrap -mx-3">
                   <div class="w-full max-w-full px-3 shrink-0 md:w-full md:flex-0">
                     <div class="mb-4">
-                      <label for="address" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Address</label>
-                      <input type="text" name="address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
+                      <label for="address" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Адрес</label>
+                      <input {{ $my_page ? '' : 'readonly' }} type="text" name="address" value="{{$user->address}}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
                     </div>
                   </div>
                   <div class="w-full max-w-full px-3 shrink-0 md:w-4/12 md:flex-0">
                     <div class="mb-4">
-                      <label for="city" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">City</label>
-                      <input type="text" name="city" value="New York" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
-                    </div>
-                  </div>
-                  <div class="w-full max-w-full px-3 shrink-0 md:w-4/12 md:flex-0">
-                    <div class="mb-4">
-                      <label for="country" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Country</label>
-                      <input type="text" name="country" value="United States" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
-                    </div>
-                  </div>
-                  <div class="w-full max-w-full px-3 shrink-0 md:w-4/12 md:flex-0">
-                    <div class="mb-4">
-                      <label for="postal code" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Postal code</label>
-                      <input type="text" name="postal code" value="437300" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
+                      <label for="city" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Город</label>
+                      <input {{ $my_page ? '' : 'readonly' }} type="text" name="city" value="{{$user->city}}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
                     </div>
                   </div>
                 </div>
                 <hr class="h-px mx-0 my-4 bg-transparent border-0 opacity-25 bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent " />
 
-                <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-sm">About me</p>
+                <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-sm">О себе</p>
                 <div class="flex flex-wrap -mx-3">
                   <div class="w-full max-w-full px-3 shrink-0 md:w-full md:flex-0">
                     <div class="mb-4">
-                      <label for="about me" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">About me</label>
-                      <input type="text" name="about me" value="A beautiful Dashboard for Bootstrap 5. It is Free and Open Source." class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
+                      <label for="about" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Описание</label>
+                      <input {{ $my_page ? '' : 'readonly' }} type="text" name="about" value="{{$user->about}}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
                     </div>
                   </div>
                 </div>
+
+                <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-sm">Мои работы</p>
+                <div class="flex flex-wrap -mx-3">
+                  @if($user->works)
+                    @foreach($user->works as $work)
+                      <div class="w-full max-w-full px-3 shrink-0 md:w-full md:flex-0">
+                        <div class="mb-4">
+                            <input {{ $my_page ? '' : 'readonly' }} type="text" name="works[]" value="{{$work}}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
+                        </div>
+                      </div>
+                    @endforeach
+                  @endif
+                  <div class="w-full max-w-full px-3 shrink-0 md:w-full md:flex-0">
+                    <div class="mb-4" id="works_wrapper">
+                      <div class="mb-4">
+                        <input {{ $my_page ? '' : 'readonly' }} type="text" name="works[]" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
+                      </div>
+                    </div>
+                    <div class="mb-4 text-right">
+                      @if ($my_page)
+                      <button type="button" class="inline-block px-4 py-2 font-bold leading-normal text-center text-white capitalize transition-all bg-blue-500 border border-transparent border-solid rounded-lg cursor-pointer text-sm xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-blue-500 xl-max:to-violet-500 xl-max:text-white xl-max:border-0 hover:shadow-xs active:opacity-85 ease-in tracking-tight-rem shadow-md bg-150 bg-x-25 bg-gradient-to-tl from-blue-500 to-violet-500 hover:border-blue-500" id="add_work" data-class="bg-transparent" >Добавить работу</button>
+                      @endif
+                    </div>
+                    </div>
+                </div>
+                <script>
+                  document.getElementById('add_work').addEventListener('click', function() {
+                    let wrapper = document.getElementById('works_wrapper');
+                    let newElement = wrapper.children[wrapper.children.length-1].cloneNode(true);
+                    newElement.querySelector('input').value = '';
+                    wrapper.appendChild(newElement);
+                  });
+                </script>
+
+                <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-sm">Мои университеты</p>
+                <div class="flex flex-wrap -mx-3">
+                  @if($user->education)
+                    @foreach($user->education as $ed)
+                      <div class="w-full max-w-full px-3 shrink-0 md:w-full md:flex-0">
+                        <div class="mb-4">
+                          <input {{ $my_page ? '' : 'readonly' }} type="text" name="education[]" value="{{$ed}}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
+                        </div>
+                      </div>
+                    @endforeach
+                  @endif
+                  <div class="w-full max-w-full px-3 shrink-0 md:w-full md:flex-0">
+                    <div class="mb-4" id="ed_wrapper">
+                      <div class="mb-4">
+                        <input {{ $my_page ? '' : 'readonly' }} type="text" name="education[]" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
+                      </div>
+                    </div>
+                    <div class="mb-4 text-right">
+                      @if ($my_page)
+                      <button type="button" class="inline-block px-4 py-2 font-bold leading-normal text-center text-white capitalize transition-all bg-blue-500 border border-transparent border-solid rounded-lg cursor-pointer text-sm xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-blue-500 xl-max:to-violet-500 xl-max:text-white xl-max:border-0 hover:shadow-xs active:opacity-85 ease-in tracking-tight-rem shadow-md bg-150 bg-x-25 bg-gradient-to-tl from-blue-500 to-violet-500 hover:border-blue-500" id="add_ed" data-class="bg-transparent">Добавить университет</button>
+                      @endif
+                    </div>
+                  </div>
+                </div>
+                <script>
+                  document.getElementById('add_ed').addEventListener('click', function() {
+                    let wrapper = document.getElementById('ed_wrapper');
+                    let newElement = wrapper.children[wrapper.children.length-1].cloneNode(true);
+                    newElement.querySelector('input').value = '';
+                    wrapper.appendChild(newElement);
+                  });
+                </script>
+                
               </div>
             </div>
           </div>
+          {{Form::close()}}
           <div class="w-full max-w-full px-3 mt-6 shrink-0 md:w-4/12 md:flex-0 md:mt-0">
             <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
               <img class="w-full rounded-t-2xl" src="{{asset("build/assets/img/bg-profile.jpg")}}" alt="profile cover image">
@@ -417,7 +497,7 @@
                   </h5>
                   <div class="mb-2 font-semibold leading-relaxed text-base dark:text-white/80 text-slate-700">
                     <i class="mr-2 dark:text-white ni ni-pin-3"></i>
-                    Bucharest, Romania
+                    {{$user->city}}
                   </div>
                   <div class="mt-6 mb-2 font-semibold leading-relaxed text-base dark:text-white/80 text-slate-700">
                     <i class="mr-2 dark:text-white ni ni-briefcase-24"></i>
