@@ -30,7 +30,7 @@ class LoginController extends Controller
         ]);
         if (Auth::attempt($data)) {
             $request->session()->regenerate();
-            return redirect()->intended('user.index');
+            return redirect()->route('user.index', Auth::id());
         }
         return back()->withErrors(['Неверный логин или пароль']);
     }
@@ -56,5 +56,13 @@ class LoginController extends Controller
         // $user->password = md5($data['password']);
         $user->save();
         return redirect()->route('login.create');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
     }
 }
