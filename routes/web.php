@@ -24,5 +24,9 @@ Route::post('/create', [Controllers\LoginController::class, 'store'])->name('log
 Route::get('/login', [Controllers\LoginController::class, 'login'])->name('login');
 Route::post('/login', [Controllers\LoginController::class, 'auth'])->name('login.auth');
 
+Route::post('/logout', [Controllers\LoginController::class, 'logout'])->name('login.logout');
+
 Route::get('/user/{id}', [Controllers\UserController::class, 'person'])->middleware('auth')->name('user.index');
 Route::patch('/user/{id}', [Controllers\UserController::class, 'store'])->middleware('auth')->name('user.store');
+
+Route::get('/adboard', [Controllers\AdboardController::class, 'index'])->middleware('auth')->name('adboard.index');
