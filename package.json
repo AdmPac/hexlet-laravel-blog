@@ -13,6 +13,7 @@
     },
     "dependencies": {
         "cli": "^1.0.1",
+        "flowbite": "^2.5.2",
         "highlight.js": "^11.4.0",
         "tailwindcss-transforms": "^2.2.0"
     }

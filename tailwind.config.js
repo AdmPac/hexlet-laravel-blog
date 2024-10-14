@@ -3,7 +3,7 @@ const plugin = require("tailwindcss/plugin");
 module.exports = {
   mode: "jit",
   // content: ["./build/**/*.{html,js}"],
-  content: ['./resources/views/**/*.blade.php', './resources/js/**/*.js'],
+  content: ['./resources/views/**/*.blade.php', './resources/js/**/*.js', "./node_modules/flowbite/**/*.js"],
   presets: [],
   darkMode: "class",
   theme: {
@@ -1343,6 +1343,7 @@ module.exports = {
   variantOrder: ["first", "last", "odd", "even", "visited", "checked", "empty", "read-only", "group-hover", "group-focus", "focus-within", "hover", "focus", "focus-visible", "active", "disabled"],
 
   plugins: [
+    require('flowbite/plugin'),
     plugin(function ({ addComponents, addUtilities }) {
       addUtilities({
         ".transform3d": {
