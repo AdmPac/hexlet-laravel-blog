@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('price')->default(0);
             $table->json('tags')->nullable();
             $table->json('location')->nullable();
-            $table->unsignedBigInteger('comment_id');
+            $table->unsignedBigInteger('comment_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('specialization_id');
             $table->foreign('comment_id')->references('id')->on('feedbacks');
@@ -49,7 +49,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-
         Schema::create('specialization_user', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
@@ -66,6 +65,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('adboards');
         Schema::dropIfExists('specializations');
+        Schema::dropIfExists('specialization_user');
         Schema::dropIfExists('feedbacks');
     }
 };
