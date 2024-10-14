@@ -17,16 +17,18 @@ class AdboardController extends Controller
      */
     public function index() {
         $id = Auth::id();
+        $user = Auth::user();
         $specs = Specialization::all();
         $ads = Adboard::with('user')->with('specialization')->where('active', '1')->get();
-        return view('pages.adboard', compact('specs', 'ads', 'id'));
+        return view('pages.adboard', compact('specs', 'ads', 'id', 'user'));
     }
     
     function adboard () {
         $id = Auth::id();
+        $user = Auth::user();
         $specs = Specialization::all();
         $ads = Adboard::query()->where('user_id', $id)->get();
-        return view('user.adboard', compact('id', 'specs', 'ads'));
+        return view('user.adboard', compact('id', 'specs', 'ads', 'user'));
     }
 
     function edit(Request $request, $id, $adboard_id) {

@@ -42,6 +42,8 @@ class LoginController extends Controller
             return redirect()->route('user.index', $id);
         }
         $user = new User();
+        $user->avatar = 'build/assets/img/default/avatar/flat_blue_1.svg';
+        $user->save();
         return view('login.create', compact('user'));
     }
     

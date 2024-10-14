@@ -188,7 +188,7 @@
                     <a class="ease py-1.2 clear-both block w-full whitespace-nowrap rounded-lg bg-transparent px-4 duration-300 lg:transition-colors" href="javascript:;">
                       <div class="flex py-1">
                         <div class="my-auto">
-                          <img src="{{asset("build/assets/img/team-2.jpg")}}" class="inline-flex items-center justify-center mr-4 text-white text-sm h-9 w-9 max-w-none rounded-xl" />
+                          <img src="{{asset($user['avatar'])}}" class="inline-flex items-center justify-center mr-4 text-white text-sm h-9 w-9 max-w-none rounded-xl" />
                         </div>
                         <div class="flex flex-col justify-center">
                           <h6 class="mb-1 font-normal leading-normal dark:text-white text-sm"><span class="font-semibold">New message</span> from Laur</h6>
@@ -259,7 +259,7 @@
           <div class="flex flex-wrap -mx-3">
             <div class="flex-none w-auto max-w-full px-3">
               <div class="relative inline-flex items-center justify-center text-white transition-all duration-200 ease-in-out text-base h-19 w-19 rounded-xl">
-                <img src="{{asset("build/assets/img/team-2.jpg")}}" alt="profile_image" class="w-full shadow-2xl rounded-xl" />
+                <img src="{{asset($user['avatar'])}}" alt="profile_image" class="w-full shadow-2xl rounded-xl" />
               </div>
             </div>
             <div class="flex-none w-auto max-w-full px-3 my-auto">
@@ -463,7 +463,7 @@
                 <div class="w-4/12 max-w-full px-3 flex-0 ">
                   <div class="mb-6 -mt-6 lg:mb-0 lg:-mt-16">
                     <a href="javascript:;">
-                      <img class="h-auto max-w-full border-2 border-white border-solid rounded-circle" src="{{asset("build/assets/img/team-2.jpg")}}" alt="profile image">
+                      <img class="h-auto max-w-full border-2 border-white border-solid rounded-circle" src="{{asset($user['avatar'])}}" alt="profile image">
                     </a>
                   </div>
                 </div>
