@@ -36,13 +36,14 @@
   <body class="m-0 font-sans antialiased font-normal dark:bg-slate-900 text-base leading-default bg-gray-50 text-slate-500">
     <div class="absolute w-full bg-blue-500 dark:hidden min-h-75"></div>
 
+    
     <aside class="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl dark:shadow-none dark:bg-slate-850 xl:ml-6 max-w-64 ease-nav-brand z-990 rounded-2xl xl:left-0 xl:translate-x-0" aria-expanded="false">
       <div class="h-19">
-        <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times dark:text-white text-slate-400 xl:hidden" sidenav-close></i>
-        <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap dark:text-white text-slate-700" href="https://demos.creative-tim.com/argon-dashboard-tailwind/pages/dashboard.html" target="_blank">
+        <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden" sidenav-close></i>
+        <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700" href="https://demos.creative-tim.com/argon-dashboard-tailwind/pages/dashboard.html" target="_blank">
           <img src="{{asset("build/assets/img/logo-ct-dark.png")}}" class="inline h-full max-w-full transition-all duration-200 dark:hidden ease-nav-brand max-h-8" alt="main_logo" />
           <img src="{{asset("build/assets/img/logo-ct.png")}}" class="hidden h-full max-w-full transition-all duration-200 dark:inline ease-nav-brand max-h-8" alt="main_logo" />
-          <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand">Argon Dashboard 2</span>
+          <span class="ml-1 font-semibold transition-all duration-200 dark:text-white ease-nav-brand">Argon Dashboard 2</span>
         </a>
       </div>
 
@@ -54,76 +55,48 @@
           <li class="mt-0.5 w-full">
             <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors dark:text-white dark:opacity-80" href="../pages/dashboard.html">
               <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-blue-500 ni ni-tv-2"></i>
+                <i class="relative top-0 leading-normal text-blue-500 ni ni-tv-2 text-sm"></i>
               </div>
               <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Dashboard</span>
             </a>
           </li>
           
           <li class="mt-0.5 w-full">
-            <a class="py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors " href="../pages/tables.html">
+            <a class="bg-blue-500/13 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors dark:text-white dark:opacity-80" href="{{route('adboard.index')}}">
               <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i>
+                <i class="relative top-0 leading-normal text-orange-500 ni ni-calendar-grid-58 text-sm"></i>
               </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Tables</span>
+              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Доска объявлений</span>
             </a>
           </li>
 
           <li class="mt-0.5 w-full">
             <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors dark:text-white dark:opacity-80" href="../pages/billing.html">
               <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-emerald-500 ni ni-credit-card"></i>
+                <i class="relative top-0 leading-normal text-emerald-500 text-sm ni ni-credit-card"></i>
               </div>
               <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Billing</span>
             </a>
           </li>
 
-          <li class="mt-0.5 w-full">
-            <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors dark:text-white dark:opacity-80" href="../pages/virtual-reality.html">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-cyan-500 ni ni-app"></i>
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Virtual Reality</span>
-            </a>
-          </li>
-
-          <li class="mt-0.5 w-full">
-            <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors dark:text-white dark:opacity-80" href="../pages/rtl.html">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-world-2"></i>
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">RTL</span>
-            </a>
-          </li>
-
           <li class="w-full mt-4">
-            <h6 class="pl-6 ml-2 text-xs font-bold leading-tight uppercase dark:text-white opacity-60">Account pages</h6>
+            <h6 class="pl-6 ml-2 font-bold leading-tight uppercase dark:text-white text-xs opacity-60">Account pages</h6>
           </li>
 
           <li class="mt-0.5 w-full">
-            <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors dark:text-white dark:opacity-80" href="../pages/profile.html">
+            <a class="py-2.7 dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-2 flex items-center rounded-lg whitespace-nowrap px-4 font-semibold text-slate-700 transition-colors" href="{{route('user.index', $id)}}">
               <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-slate-700 ni ni-single-02"></i>
+                <i class="relative top-0 leading-normal text-slate-700 text-sm ni ni-single-02"></i>
               </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Profile</span>
+              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Мой профиль</span>
             </a>
           </li>
-
           <li class="mt-0.5 w-full">
-            <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors dark:text-white dark:opacity-80" href="../pages/sign-in.html">
+            <a class="py-2.7 dark:text-white dark:opacity-80  text-sm ease-nav-brand my-0 mx-2 flex items-center rounded-lg whitespace-nowrap px-4 font-semibold text-slate-700 transition-colors" href="{{route('user.adboard', $id)}}">
               <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-single-copy-04"></i>
+                <i class="relative top-0 leading-normal text-slate-700 text-sm ni ni-collection"></i>
               </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Sign In</span>
-            </a>
-          </li>
-
-          <li class="mt-0.5 w-full">
-            <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors dark:text-white dark:opacity-80" href="../pages/sign-up.html">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-cyan-500 ni ni-collection"></i>
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Sign Up</span>
+              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Мои объявления</span>
             </a>
           </li>
         </ul>
@@ -131,19 +104,19 @@
 
       <div class="mx-4">
         <!-- load phantom colors for card after: -->
-        <p class="invisible hidden text-gray-800 text-red-500 text-red-600 text-blue-500 after:bg-gradient-to-tl after:from-zinc-800 after:to-zinc-700 after:from-blue-700 after:to-cyan-500 after:from-orange-500 after:to-yellow-500 after:from-green-600 after:to-lime-400 after:from-red-600 after:to-orange-600 after:from-slate-600 after:to-slate-300 text-emerald-500 text-cyan-500 text-slate-400"></p>
+        <p class="invisible hidden text-gray-800 text-red-500 text-red-600 text-blue-500 dark:text-white dark:opacity-60 after:bg-gradient-to-tl after:from-zinc-800 after:to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 after:from-blue-700 after:to-cyan-500 after:from-orange-500 after:to-yellow-500 after:from-green-600 after:to-lime-400 after:from-red-600 after:to-orange-600 after:from-slate-600 after:to-slate-300 text-emerald-500 text-cyan-500 text-slate-400"></p>
         <div class="relative flex flex-col min-w-0 break-words bg-transparent border-0 shadow-none rounded-2xl bg-clip-border" sidenav-card>
-          <img class="w-1/2 mx-auto" src="../assets/img/illustrations/icon-documentation.svg" alt="sidebar illustrations">
+          <img class="w-1/2 mx-auto" src="{{asset("build/assets/img/illustrations/icon-documentation.svg")}}" alt="sidebar illustrations">
           <div class="flex-auto w-full p-4 pt-0 text-center">
             <div class="transition-all duration-200 ease-nav-brand">
-              <h6 class="mb-0 dark:text-white text-slate-700 ">Need help?</h6>
-              <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-60">Please check our docs</p>
+              <h6 class="mb-0 dark:text-white text-slate-700 ">Нужна помощь?</h6>
+              <p class="mb-0 font-semibold leading-tight dark:text-white dark:opacity-60 text-xs">Пожалуйста, изучите документацию</p>
             </div>
           </div>
         </div>
-        <a href="https://www.creative-tim.com/learning-lab/tailwind/html/quick-start/argon-dashboard/" target="_blank" class="inline-block w-full px-8 py-2 mb-4 text-xs font-bold leading-normal text-center text-white capitalize transition-all ease-in rounded-lg shadow-md bg-slate-700 bg-150 hover:shadow-xs hover:-translate-y-px">Documentation</a>
+        <a href="https://www.creative-tim.com/learning-lab/tailwind/html/quick-start/argon-dashboard/" target="_blank" class="inline-block w-full px-8 py-2 mb-4 font-bold leading-normal text-center text-white capitalize transition-all ease-in rounded-lg shadow-md bg-slate-700 bg-150 text-xs hover:shadow-xs hover:-translate-y-px">Documentation</a>
         <!-- pro btn  -->
-        <a class="inline-block w-full px-8 py-2 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md select-none bg-150 bg-x-25 hover:shadow-xs hover:-translate-y-px" href="https://www.creative-tim.com/product/argon-dashboard-pro-tailwind?ref=sidebarfree" target="_blank">Upgrade to pro</a>
+        <a class="inline-block w-full px-8 py-2 font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md select-none bg-150 bg-x-25 text-xs hover:shadow-xs hover:-translate-y-px" href="https://www.creative-tim.com/product/argon-dashboard-pro-tailwind?ref=sidebarfree" target="_blank">Upgrade to pro</a>
       </div>
     </aside>
 
@@ -178,8 +151,10 @@
               </li> -->
               <li class="flex items-center">
                 <a href="../pages/sign-in.html" class="block px-0 py-2 text-sm font-semibold text-white transition-all ease-nav-brand">
-                  <i class="fa fa-user sm:mr-1"></i>
-                  <span class="hidden sm:inline">Sign In</span>
+                  {{Form::open(['url' => route('login.logout'), 'method' => 'POST'])}}
+                    <i class="fa fa-user sm:mr-1" aria-hidden="true"></i>
+                    <input type="submit" class="hidden sm:inline" value="Выйти" style="cursor: pointer">
+                  {{Form::close()}}
                 </a>
               </li>
               <li class="flex items-center pl-4 xl:hidden">
@@ -284,21 +259,24 @@
             <div class="flex-none h-full w-full max-w-full px-3">
               <div class="relative h-full flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                 <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                  <h6 class="dark:text-white">Доска объявлений</h6>
+                  <h6 class="dark:text-white ">Доска объявлений</h6>
                 </div>
                 <div class="flex-auto px-0 pt-0 pb-2">
                   <div class="p-0 overflow-x-auto">
                     <table class="items-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500">
                       <thead class="align-bottom">
                         <tr>
-                          <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Author</th>
-                          <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Function</th>
-                          <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Status</th>
-                          <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Employed</th>
+                          <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Автор</th>
+                          <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Название</th>
+                          <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Описание</th>
+                          <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Цена</th>
+                          <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Оценка</th>
+                          <th class="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-collapse border-solid shadow-none dark:border-white/40 dark:text-white tracking-none whitespace-nowrap text-slate-400 opacity-70"></th>
                           <th class="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-collapse border-solid shadow-none dark:border-white/40 dark:text-white tracking-none whitespace-nowrap text-slate-400 opacity-70"></th>
                         </tr>
                       </thead>
                       <tbody>
+                        @foreach($ads as $ad)
                         <tr>
                           <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                             <div class="flex px-2 py-1">
@@ -306,156 +284,33 @@
                                 <img src="{{asset("build/assets/img/team-2.jpg")}}" class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl" alt="user1" />
                               </div>
                               <div class="flex flex-col justify-center">
-                                <h6 class="mb-0 text-sm leading-normal dark:text-white">John Michael</h6>
+                                <h6 class="mb-0 text-sm leading-normal dark:text-white">{{$ad['user']['name']}} {{$ad['user']['lastname']}}</h6>
   
-                                <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">john@creative-tim.com</p>
+                                <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">{{$ad['user']['nickname']}}</p>
                               </div>
                             </div>
                           </td>
                           <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80">Manager</p>
-                            <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">Organization</p>
+                            <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80">{{$ad['title']}}</p>
+                            <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">{{$ad['specialization']['title']}}</p>
                           </td>
                           <td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <span class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Online</span>
+                            <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80">{{$ad['description']}}</p>
                           </td>
                           <td class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <span class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">23/04/18</span>
-                          </td>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <a href="javascript:;" class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400"> Edit </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <div class="flex px-2 py-1">
-                              <div>
-                                <img src="{{asset("build/assets/img/team-3.jpg")}}" class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl" alt="user2" />
-                              </div>
-                              <div class="flex flex-col justify-center">
-                                <h6 class="mb-0 text-sm leading-normal dark:text-white">Alexa Liras</h6>
-                                <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">alexa@creative-tim.com</p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80">Programator</p>
-                            <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">Developer</p>
-                          </td>
-                          <td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <span class="bg-gradient-to-tl from-slate-600 to-slate-300 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Offline</span>
+                            <span class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">{{$ad['price']}} ₽</span>
                           </td>
                           <td class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <span class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">11/01/19</span>
+                            <span class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">{{$ad['rate']}}</span>
                           </td>
                           <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <a href="javascript:;" class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400"> Edit </a>
+                            <a href="javascript:;" class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400"> Отзывы </a>
+                          </td>
+                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                            <a href="javascript:;" class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400"> Написать </a>
                           </td>
                         </tr>
-                        <tr>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <div class="flex px-2 py-1">
-                              <div>
-                                <img src="{{asset("build/assets/img/team-4.jpg")}}" class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl" alt="user3" />
-                              </div>
-                              <div class="flex flex-col justify-center">
-                                <h6 class="mb-0 text-sm leading-normal dark:text-white">Laurent Perrier</h6>
-                                <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">laurent@creative-tim.com</p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80">Executive</p>
-                            <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">Projects</p>
-                          </td>
-                          <td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <span class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Online</span>
-                          </td>
-                          <td class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <span class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">19/09/17</span>
-                          </td>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <a href="javascript:;" class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400"> Edit </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <div class="flex px-2 py-1">
-                              <div>
-                                <img src="{{asset("build/assets/img/team-3.jpg")}}" class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl" alt="user4" />
-                              </div>
-                              <div class="flex flex-col justify-center">
-                                <h6 class="mb-0 text-sm leading-normal dark:text-white">Michael Levi</h6>
-                                <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">michael@creative-tim.com</p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80">Programator</p>
-                            <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">Developer</p>
-                          </td>
-                          <td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <span class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Online</span>
-                          </td>
-                          <td class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <span class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">24/12/08</span>
-                          </td>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <a href="javascript:;" class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400"> Edit </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <div class="flex px-2 py-1">
-                              <div>
-                                <img src="{{asset("build/assets/img/team-2.jpg")}}" class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl" alt="user5" />
-                              </div>
-                              <div class="flex flex-col justify-center">
-                                <h6 class="mb-0 text-sm leading-normal dark:text-white">Richard Gran</h6>
-                                <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">richard@creative-tim.com</p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80">Manager</p>
-                            <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">Executive</p>
-                          </td>
-                          <td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <span class="bg-gradient-to-tl from-slate-600 to-slate-300 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Offline</span>
-                          </td>
-                          <td class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <span class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">04/10/21</span>
-                          </td>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <a href="javascript:;" class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400"> Edit </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                            <div class="flex px-2 py-1">
-                              <div>
-                                <img src="{{asset("build/assets/img/team-4.jpg")}}" class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl" alt="user6" />
-                              </div>
-                              <div class="flex flex-col justify-center">
-                                <h6 class="mb-0 text-sm leading-normal dark:text-white">Miriam Eric</h6>
-                                <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">miriam@creative-tim.com</p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80">Programtor</p>
-                            <p class="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">Developer</p>
-                          </td>
-                          <td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                            <span class="bg-gradient-to-tl from-slate-600 to-slate-300 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Offline</span>
-                          </td>
-                          <td class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                            <span class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">14/09/20</span>
-                          </td>
-                          <td class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                            <a href="javascript:;" class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400"> Edit </a>
-                          </td>
-                        </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
