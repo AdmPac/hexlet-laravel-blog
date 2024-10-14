@@ -27,13 +27,17 @@
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <!-- Nucleo Icons -->
+
     <link href="{{asset("build/assets/css/nucleo-icons.css")}}" rel="stylesheet" />
     <link href="{{asset("build/assets/css/nucleo-svg.css")}}" rel="stylesheet" />
     <!-- Popper -->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <!-- Main Styling -->
     <link href="{{asset("build/assets/css/argon-dashboard-tailwind.css?v=1.0.1")}}" rel="stylesheet" />
   </head>
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+
   <body class="m-0 font-sans antialiased font-normal dark:bg-slate-900 text-base leading-default bg-gray-50 text-slate-500">
     <div class="absolute bg-y-50 w-full top-0 bg-[url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg')] min-h-75">
       <span class="absolute top-0 left-0 w-full h-full bg-blue-500 opacity-60"></span>
@@ -82,11 +86,11 @@
           </li>
 
           <li class="w-full mt-4">
-            <h6 class="pl-6 ml-2 font-bold leading-tight uppercase dark:text-white text-xs opacity-60">Account pages</h6>
+            <h6 class="pl-6 ml-2 font-bold leading-tight uppercase dark:text-white text-xs opacity-60">Мои страницы</h6>
           </li>
 
           <li class="mt-0.5 w-full">
-            <a class="py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80  text-sm ease-nav-brand my-0 mx-2 flex items-center rounded-lg whitespace-nowrap px-4 font-semibold text-slate-700 transition-colors" href="{{route('user.index', $id)}}">
+            <a class="py-2.7 dark:text-white dark:opacity-80  text-sm ease-nav-brand my-0 mx-2 flex items-center rounded-lg whitespace-nowrap px-4 font-semibold text-slate-700 transition-colors" href="{{route('user.index', $id)}}">
               <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                 <i class="relative top-0 leading-normal text-slate-700 text-sm ni ni-single-02"></i>
               </div>
@@ -94,7 +98,7 @@
             </a>
           </li>
           <li class="mt-0.5 w-full">
-            <a class="py-2.7 dark:text-white dark:opacity-80  text-sm ease-nav-brand my-0 mx-2 flex items-center rounded-lg whitespace-nowrap px-4 font-semibold text-slate-700 transition-colors" href="{{route('user.adboard', $id)}}">
+            <a class="py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80  text-sm ease-nav-brand my-0 mx-2 flex items-center rounded-lg whitespace-nowrap px-4 font-semibold text-slate-700 transition-colors" href="{{route('user.adboard', $id)}}">
               <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                 <i class="relative top-0 leading-normal text-slate-700 text-sm ni ni-collection"></i>
               </div>
@@ -297,8 +301,286 @@
       </div>
       <div class="w-full p-6 mx-auto">
         <div class="flex flex-wrap -mx-3">
-          <div class="w-full max-w-full px-3 shrink-0 md:w-8/12 md:flex-0">
-            {{Form::open(['url' => route('user.store', $id), 'method' => 'PATCH'])}}
+          <div class="w-full max-w-full px-3 shrink-0 md:w-12/12 md:flex-0">
+            
+        <div class="flex flex-wrap -mx-3">
+          <div class="w-full max-w-full px-3 mt-6 md:w-8/12 md:flex-none">
+            <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+              <div class="p-6 px-4 pb-0 mb-0 border-b-0 rounded-t-2xl">
+                <h6 class="mb-0 dark:text-white">Объявления</h6>
+              </div>
+              <div class="flex-auto p-4 pt-6">
+                <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+                  @foreach ($ads as $ad) 
+                  <li class="relative flex p-6 mb-2 border-0 rounded-t-inherit rounded-xl bg-gray-50 dark:bg-slate-850">
+                    <div class="flex flex-col">
+                      <h6 class="mb-4 text-sm leading-normal dark:text-white">{{$ad['title']}}</h6>
+                      <span class="mb-2 text-xs leading-tight dark:text-white/80">Специализация: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$ad['specialization']['title']}}</span></span>
+                        <span class="mb-2 text-xs leading-tight dark:text-white/80">Описание объявления: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$ad['description']}}</span></span>
+                      <span class="text-xs leading-tight dark:text-white/80">Стоимость: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$ad['price']}}</span></span><br>
+                      <span class="mb-2 text-xs leading-tight dark:text-white/80">Оценка: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{$ad['rate']}}</span></span>
+                    </div>
+                    <div class="ml-auto text-right">
+                      <button onclick="crudModal('{{ $ad }}')" data-modal-target="crud-modal-edit-{{$ad['id']}}" data-modal-toggle="crud-modal-edit-{{$ad['id']}}" class="inline-block dark:text-white px-4 py-2.5 mb-0 font-bold text-center align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-normal text-sm ease-in bg-150 hover:-translate-y-px active:opacity-85 bg-x-25 text-slate-700" href="javascript:;"><i class="mr-2 fas fa-pencil-alt text-slate-700" aria-hidden="true"></i>Изменить</button>
+                      <button class="relative z-10 inline-block px-4 py-2.5 mb-0 font-bold text-center text-transparent align-middle transition-all border-0 rounded-lg shadow-none cursor-pointer leading-normal text-sm ease-in bg-150 bg-gradient-to-tl from-red-600 to-orange-600 hover:-translate-y-px active:opacity-85 bg-x-25 bg-clip-text" onclick="confirmDelete('{{$ad['id']}}')" href="javascript:;"><i class="mr-2 far fa-trash-alt bg-150 bg-gradient-to-tl from-red-600 to-orange-600 bg-x-25 bg-clip-text"></i>Удалить</button>
+                      <script>
+                        function confirmDelete(id) {
+                          var confirmBox = confirm("Вы уверены, что хотите удалить объявление?");
+                          if (confirmBox == true) {
+                            document.querySelector('#delete-'+id).submit();
+                          }
+                        }
+                      </script>
+                      {{Form::open(['route' => ['user.adboard.delete', ['id' => $id, 'adboard_id' => $ad['id']]], 'method' => 'delete', 'id' => 'delete-'.$ad['id']])}}
+                      {{Form::close()}}
+                      
+                      <label class="inline-flex items-center cursor-pointer">
+                        @if ($ad['active'] == 1)
+                        <input type="checkbox" value="" class="sr-only peer" checked onclick="actived('{{$id}}', '{{$ad['id']}}')" >
+                        <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                        <span id="span-actived-{{$ad['id']}}" class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Активно</span>
+                        @else
+                        <input type="checkbox" value="" class="sr-only peer" onclick="actived('{{$id}}', '{{$ad['id']}}')" >
+                        <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                        <span id="span-actived-{{$ad['id']}}" class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Не активно</span>
+                        @endif
+                      </label>
+                    </div>
+                  </li>                  
+                  <div id="crud-modal-edit-{{$ad['id']}}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div class="relative p-4 w-full max-w-md max-h-full">
+                        <!-- Modal content -->
+                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                            <!-- Modal header -->
+                            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                <h3 id="ad_header" class="text-lg font-semibold text-gray-900 dark:text-white">
+                                      Новое объявление
+                                </h3>
+                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal-edit-{{$ad['id']}}">
+                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                    </svg>
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                            </div>
+                            <!-- Modal body -->
+                            {{Form::open(['url' => route('user.adboard.edit', ['id' => $id, 'adboard_id' => $ad['id']]), 'method' => 'PATCH', 'class' => "p-4 md:p-5"])}}
+                                <div class="grid gap-4 mb-4 grid-cols-2">
+                                    <div class="col-span-2">
+                                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Название</label>
+                                        <input type="text" name="title" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="ЕГЭ по математике" required="">
+                                    </div>
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Цена</label>
+                                        <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="1000 ₽" required="">
+                                    </div>
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Специализация</label>
+                                        <select id="category" name="specialization" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            {{-- TODO: заменить на инфу из БД --}}
+                                            @foreach ($specs as $s)
+                                              <option value="{{$s['id']}}">{{$s['title']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-span-2">
+                                        <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Описание</label>
+                                        {{-- TODO: при выборе специализации подставлять описание, цену и --}}
+                                        <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Помогу сдать курс по математике"></textarea>                    
+                                    </div>
+                                    
+                                    {{-- <div class="col-span-2 sm:col-span-1">
+                                      <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Теги</label>
+                                      <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="1000 ₽" required="">
+                                    </div> --}}
+                                    
+                                </div>
+                                <button type="submit" class="inline-flex items-center focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 border border-blue-500">
+                                    <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+                                    Добавить
+                                </button>
+                              {{Form::close()}}
+                        </div>
+                    </div>
+                  </div> 
+                  @endforeach
+                  {{--  --}}
+                  <script>
+                    function crudModal(obj) {
+                      // const objJs = JSON.parse(obj);
+                      obj = JSON.parse(obj);
+                      
+                      const modal = document.getElementById('crud-modal-edit-' + obj.id);
+                      modal.querySelector('#ad_header').textContent = 'Редактирование объявления';
+                      modal.querySelector('input[name=title]').value = obj.title;
+                      modal.querySelector('input[name=price]').value = obj.price;
+                      modal.querySelector('textarea[name=description]').textContent = obj.description;
+                      modal.querySelector('select[name=specialization]').value = obj.specialization_id; // Устанавливаем значение select
+                      modal.querySelectorAll('button')[1].textContent = 'Сохранить';
+                    }
+                  </script>
+
+                  <!-- Modal toggle -->
+                  <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="block bg-blue-700 hover:bg-blue-600 text-black font-medium rounded-lg text-sm px-5 py-2.5 text-center border border-blue-500" type="button">
+                    Добавить объявление
+                  </button>
+                  
+                  <!-- Main modal -->
+                  <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                      <div class="relative p-4 w-full max-w-md max-h-full">
+                          <!-- Modal content -->
+                          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                              <!-- Modal header -->
+                              <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                  <h3 id="ad_header" class="text-lg font-semibold text-gray-900 dark:text-white">
+                                        Новое объявление
+                                  </h3>
+                                  <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
+                                      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                      </svg>
+                                      <span class="sr-only">Close modal</span>
+                                  </button>
+                              </div>
+                              <!-- Modal body -->
+                              {{Form::open(['url' => route('user.adboard', $id), 'method' => 'POST', 'class' => "p-4 md:p-5"])}}
+                                  <div class="grid gap-4 mb-4 grid-cols-2">
+                                      <div class="col-span-2">
+                                          <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Название</label>
+                                          <input type="text" name="title" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="ЕГЭ по математике" required="">
+                                      </div>
+                                      <div class="col-span-2 sm:col-span-1">
+                                          <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Цена</label>
+                                          <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="1000 ₽" required="">
+                                      </div>
+                                      <div class="col-span-2 sm:col-span-1">
+                                          <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Специализация</label>
+                                          <select id="category" name="specialization" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                              {{-- TODO: заменить на инфу из БД --}}
+                                              @foreach ($specs as $s)
+                                                <option value="{{$s['id']}}">{{$s['title']}}</option>
+                                              @endforeach
+                                          </select>
+                                      </div>
+                                      <div class="col-span-2">
+                                          <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Описание</label>
+                                          {{-- TODO: при выборе специализации подставлять описание, цену и --}}
+                                          <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Помогу сдать курс по математике"></textarea>                    
+                                      </div>
+                                      
+                                      {{-- <div class="col-span-2 sm:col-span-1">
+                                        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Теги</label>
+                                        <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="1000 ₽" required="">
+                                      </div> --}}
+                                      
+                                  </div>
+                                  <button type="submit" class="inline-flex items-center focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 border border-blue-500">
+                                      <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+                                      Добавить
+                                  </button>
+                                {{Form::close()}}
+                          </div>
+                      </div>
+                  </div> 
+
+                  {{--  --}}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="w-full max-w-full px-3 mt-6 md:w-4/12 md:flex-none">
+            <div class="relative flex flex-col h-full min-w-0 mb-6 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+              <div class="p-6 px-4 pb-0 mb-0 border-b-0 rounded-t-2xl">
+                <div class="flex flex-wrap -mx-3">
+                  <div class="max-w-full px-3 md:w-1/2 md:flex-none">
+                    <h6 class="mb-0 dark:text-white">Последние события</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-auto p-4 pt-6">
+                <h6 class="mb-4 text-xs font-bold leading-tight uppercase dark:text-white text-slate-500">Newest</h6>
+                <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+                  <li class="relative flex justify-between px-4 py-2 pl-0 mb-2 border-0 rounded-t-inherit text-inherit rounded-xl">
+                    <div class="flex items-center">
+                      <button class="leading-pro ease-in text-xs bg-150 w-6.5 h-6.5 p-1.2 rounded-3.5xl tracking-tight-rem bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-red-600 border-transparent bg-transparent text-center align-middle font-bold uppercase text-red-600 transition-all hover:opacity-75"><i class="fas fa-arrow-down text-3xs"></i></button>
+                      <div class="flex flex-col">
+                        <h6 class="mb-1 text-sm leading-normal dark:text-white text-slate-700">Netflix</h6>
+                        <span class="text-xs leading-tight dark:text-white/80">27 March 2020, at 12:30 PM</span>
+                      </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-center">
+                      <p class="relative z-10 inline-block m-0 text-sm font-semibold leading-normal text-transparent bg-gradient-to-tl from-red-600 to-orange-600 bg-clip-text">- $ 2,500</p>
+                    </div>
+                  </li>
+                  <li class="relative flex justify-between px-4 py-2 pl-0 mb-2 border-0 border-t-0 rounded-b-inherit text-inherit rounded-xl">
+                    <div class="flex items-center">
+                      <button class="leading-pro ease-in text-xs bg-150 w-6.5 h-6.5 p-1.2 rounded-3.5xl tracking-tight-rem bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-emerald-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-emerald-500 transition-all hover:opacity-75"><i class="fas fa-arrow-up text-3xs"></i></button>
+                      <div class="flex flex-col">
+                        <h6 class="mb-1 text-sm leading-normal dark:text-white text-slate-700">Apple</h6>
+                        <span class="text-xs leading-tight dark:text-white/80">27 March 2020, at 04:30 AM</span>
+                      </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-center">
+                      <p class="relative z-10 inline-block m-0 text-sm font-semibold leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 bg-clip-text">+ $ 2,000</p>
+                    </div>
+                  </li>
+                </ul>
+                <h6 class="my-4 text-xs font-bold leading-tight uppercase dark:text-white text-slate-500">Yesterday</h6>
+                <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+                  <li class="relative flex justify-between px-4 py-2 pl-0 mb-2 border-0 rounded-t-inherit text-inherit rounded-xl">
+                    <div class="flex items-center">
+                      <button class="leading-pro ease-in text-xs bg-150 w-6.5 h-6.5 p-1.2 rounded-3.5xl tracking-tight-rem bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-emerald-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-emerald-500 transition-all hover:opacity-75"><i class="fas fa-arrow-up text-3xs"></i></button>
+                      <div class="flex flex-col">
+                        <h6 class="mb-1 text-sm leading-normal dark:text-white text-slate-700">Stripe</h6>
+                        <span class="text-xs leading-tight dark:text-white/80">26 March 2020, at 13:45 PM</span>
+                      </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-center">
+                      <p class="relative z-10 inline-block m-0 text-sm font-semibold leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 bg-clip-text">+ $ 750</p>
+                    </div>
+                  </li>
+                  <li class="relative flex justify-between px-4 py-2 pl-0 mb-2 border-0 border-t-0 text-inherit rounded-xl">
+                    <div class="flex items-center">
+                      <button class="leading-pro ease-in text-xs bg-150 w-6.5 h-6.5 p-1.2 rounded-3.5xl tracking-tight-rem bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-emerald-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-emerald-500 transition-all hover:opacity-75"><i class="fas fa-arrow-up text-3xs"></i></button>
+                      <div class="flex flex-col">
+                        <h6 class="mb-1 text-sm leading-normal dark:text-white text-slate-700">HubSpot</h6>
+                        <span class="text-xs leading-tight dark:text-white/80">26 March 2020, at 12:30 PM</span>
+                      </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-center">
+                      <p class="relative z-10 inline-block m-0 text-sm font-semibold leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 bg-clip-text">+ $ 1,000</p>
+                    </div>
+                  </li>
+                  <li class="relative flex justify-between px-4 py-2 pl-0 mb-2 border-0 border-t-0 text-inherit rounded-xl">
+                    <div class="flex items-center">
+                      <button class="leading-pro ease-in text-xs bg-150 w-6.5 h-6.5 p-1.2 rounded-3.5xl tracking-tight-rem bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-emerald-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-emerald-500 transition-all hover:opacity-75"><i class="fas fa-arrow-up text-3xs"></i></button>
+                      <div class="flex flex-col">
+                        <h6 class="mb-1 text-sm leading-normal dark:text-white text-slate-700">Creative Tim</h6>
+                        <span class="text-xs leading-tight dark:text-white/80">26 March 2020, at 08:30 AM</span>
+                      </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-center">
+                      <p class="relative z-10 items-center inline-block m-0 text-sm font-semibold leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 bg-clip-text">+ $ 2,500</p>
+                    </div>
+                  </li>
+                  <li class="relative flex justify-between px-4 py-2 pl-0 mb-2 border-0 border-t-0 rounded-b-inherit text-inherit rounded-xl">
+                    <div class="flex items-center">
+                      <button class="leading-pro ease-in text-xs bg-150 w-6.5 h-6.5 p-1.2 rounded-3.5xl tracking-tight-rem bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-slate-700 border-transparent bg-transparent text-center align-middle font-bold uppercase text-slate-700 transition-all hover:opacity-75"><i class="fas fa-exclamation text-3xs"></i></button>
+                      <div class="flex flex-col">
+                        <h6 class="mb-1 text-sm leading-normal dark:text-white text-slate-700">Webflow</h6>
+                        <span class="text-xs leading-tight dark:text-white/80">26 March 2020, at 05:00 AM</span>
+                      </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-center">
+                      <p class="flex items-center m-0 text-sm font-semibold leading-normal text-slate-700">Pending</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+            {{-- {{Form::open(['url' => route('user.store', $id), 'method' => 'PATCH'])}}
             @if ($errors->any())
               @foreach ($errors->all() as $error)
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
@@ -313,215 +595,9 @@
                 <span class="block sm:inline">{{ session()->get('success') }}</span>
               </div>
             @endif
-            <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-              <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
-                <div class="flex items-center">
-                  <p class="mb-0 dark:text-white/80">Изменение профиля</p>
-                  @if($my_page)
-                  <input type="submit" class="inline-block px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85" value="Сохранить">
-                  @endif
-                </div>
-              </div>
-              <div class="flex-auto p-6">
-                <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-sm">Информация о пользователе</p>
-                <div class="flex flex-wrap -mx-3">
-                  <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
-                    <div class="mb-4">
-                      <label for="nickname" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Никнейм</label>
-                      <input {{ $my_page ? '' : 'readonly' }} type="text" name="nickname" value="{{ $user->nickname }}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
-                    </div>
-                  </div>
-                  <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
-                    <div class="mb-4">
-                      <label for="email" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Email</label>
-                      <input {{ $my_page ? '' : 'readonly' }} type="email" name="email" value="{{$user->email}}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
-                    </div>
-                  </div>
-                  <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
-                    <div class="mb-4">
-                      <label for="name" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Имя</label>
-                      <input {{ $my_page ? '' : 'readonly' }} type="text" name="name" value="{{$user->name}}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
-                    </div>
-                  </div>
-                  <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
-                    <div class="mb-4">
-                      <label for="lastname" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Фамилия</label>
-                      <input {{ $my_page ? '' : 'readonly' }} type="text" name="lastname" value="{{$user->lastname}}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
-                    </div>
-                  </div>
-                  <div class="w-full max-w-full px-3 shrink-0 md:w-1/12 md:flex-0">
-                    <div class="mb-4">
-
-                      <label for="age" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Возраст</label>
-                      <input {{ $my_page ? '' : 'readonly' }} type="text" name="age" value="{{$user->age}}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
-                    </div>
-                  </div>
-                </div>
-                <hr class="h-px mx-0 my-4 bg-transparent border-0 opacity-25 bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent " />
-                
-                <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-sm">Контактная информация</p>
-                <div class="flex flex-wrap -mx-3">
-                  <div class="w-full max-w-full px-3 shrink-0 md:w-full md:flex-0">
-                    <div class="mb-4">
-                      <label for="address" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Адрес</label>
-                      <input {{ $my_page ? '' : 'readonly' }} type="text" name="address" value="{{$user->address}}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
-                    </div>
-                  </div>
-                  <div class="w-full max-w-full px-3 shrink-0 md:w-4/12 md:flex-0">
-                    <div class="mb-4">
-                      <label for="city" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Город</label>
-                      <input {{ $my_page ? '' : 'readonly' }} type="text" name="city" value="{{$user->city}}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
-                    </div>
-                  </div>
-                </div>
-                <hr class="h-px mx-0 my-4 bg-transparent border-0 opacity-25 bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent " />
-
-                <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-sm">О себе</p>
-                <div class="flex flex-wrap -mx-3">
-                  <div class="w-full max-w-full px-3 shrink-0 md:w-full md:flex-0">
-                    <div class="mb-4">
-                      <label for="about" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Описание</label>
-                      <input {{ $my_page ? '' : 'readonly' }} type="text" name="about" value="{{$user->about}}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
-                    </div>
-                  </div>
-                </div>
-
-                <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-sm">Мои работы</p>
-                <div class="flex flex-wrap -mx-3">
-                  @if($user->works)
-                    @foreach($user->works as $work)
-                      <div class="w-full max-w-full px-3 shrink-0 md:w-full md:flex-0">
-                        <div class="mb-4">
-                            <input {{ $my_page ? '' : 'readonly' }} type="text" name="works[]" value="{{$work}}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
-                        </div>
-                      </div>
-                    @endforeach
-                  @endif
-                  <div class="w-full max-w-full px-3 shrink-0 md:w-full md:flex-0">
-                    <div class="mb-4" id="works_wrapper">
-                      <div class="mb-4">
-                        <input {{ $my_page ? '' : 'readonly' }} type="text" name="works[]" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
-                      </div>
-                    </div>
-                    <div class="mb-4 text-right">
-                      @if ($my_page)
-                      <button type="button" class="inline-block px-4 py-2 font-bold leading-normal text-center text-white capitalize transition-all bg-blue-500 border border-transparent border-solid rounded-lg cursor-pointer text-sm xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-blue-500 xl-max:to-violet-500 xl-max:text-white xl-max:border-0 hover:shadow-xs active:opacity-85 ease-in tracking-tight-rem shadow-md bg-150 bg-x-25 bg-gradient-to-tl from-blue-500 to-violet-500 hover:border-blue-500" id="add_work" data-class="bg-transparent" >Добавить работу</button>
-                      @endif
-                    </div>
-                    </div>
-                </div>
-                <script>
-                  document.getElementById('add_work').addEventListener('click', function() {
-                    let wrapper = document.getElementById('works_wrapper');
-                    let newElement = wrapper.children[wrapper.children.length-1].cloneNode(true);
-                    newElement.querySelector('input').value = '';
-                    wrapper.appendChild(newElement);
-                  });
-                </script>
-
-                <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-sm">Мои университеты</p>
-                <div class="flex flex-wrap -mx-3">
-                  @if($user->education)
-                    @foreach($user->education as $ed)
-                      <div class="w-full max-w-full px-3 shrink-0 md:w-full md:flex-0">
-                        <div class="mb-4">
-                          <input {{ $my_page ? '' : 'readonly' }} type="text" name="education[]" value="{{$ed}}" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
-                        </div>
-                      </div>
-                    @endforeach
-                  @endif
-                  <div class="w-full max-w-full px-3 shrink-0 md:w-full md:flex-0">
-                    <div class="mb-4" id="ed_wrapper">
-                      <div class="mb-4">
-                        <input {{ $my_page ? '' : 'readonly' }} type="text" name="education[]" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
-                      </div>
-                    </div>
-                    <div class="mb-4 text-right">
-                      @if ($my_page)
-                      <button type="button" class="inline-block px-4 py-2 font-bold leading-normal text-center text-white capitalize transition-all bg-blue-500 border border-transparent border-solid rounded-lg cursor-pointer text-sm xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-blue-500 xl-max:to-violet-500 xl-max:text-white xl-max:border-0 hover:shadow-xs active:opacity-85 ease-in tracking-tight-rem shadow-md bg-150 bg-x-25 bg-gradient-to-tl from-blue-500 to-violet-500 hover:border-blue-500" id="add_ed" data-class="bg-transparent">Добавить университет</button>
-                      @endif
-                    </div>
-                  </div>
-                </div>
-                <script>
-                  document.getElementById('add_ed').addEventListener('click', function() {
-                    let wrapper = document.getElementById('ed_wrapper');
-                    let newElement = wrapper.children[wrapper.children.length-1].cloneNode(true);
-                    newElement.querySelector('input').value = '';
-                    wrapper.appendChild(newElement);
-                  });
-                </script>
-                
-              </div>
-            </div>
+            
           </div>
-          {{Form::close()}}
-          <div class="w-full max-w-full px-3 mt-6 shrink-0 md:w-4/12 md:flex-0 md:mt-0">
-            <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-              <img class="w-full rounded-t-2xl" src="{{asset("build/assets/img/bg-profile.jpg")}}" alt="profile cover image">
-              <div class="flex flex-wrap justify-center -mx-3">
-                <div class="w-4/12 max-w-full px-3 flex-0 ">
-                  <div class="mb-6 -mt-6 lg:mb-0 lg:-mt-16">
-                    <a href="javascript:;">
-                      <img class="h-auto max-w-full border-2 border-white border-solid rounded-circle" src="{{asset("build/assets/img/team-2.jpg")}}" alt="profile image">
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="border-black/12.5 rounded-t-2xl p-6 text-center pt-0 pb-6 lg:pt-2 lg:pb-4">
-                <div class="flex justify-between">
-                  <button type="button" class="hidden px-8 py-2 font-bold leading-normal text-center text-white align-middle transition-all ease-in border-0 rounded-lg shadow-md cursor-pointer text-xs bg-cyan-500 lg:block tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">Connect</button>
-                  <button type="button" class="block px-8 py-2 font-bold leading-normal text-center text-white align-middle transition-all ease-in border-0 rounded-lg shadow-md cursor-pointer text-xs bg-cyan-500 lg:hidden tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">
-                    <i class="ni ni-collection text-2.8"></i>
-                  </button>
-                  <button type="button" class="hidden px-8 py-2 font-bold leading-normal text-center text-white align-middle transition-all ease-in border-0 rounded-lg shadow-md cursor-pointer text-xs bg-slate-700 lg:block tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">Message</button>
-                  <button type="button" class="block px-8 py-2 font-bold leading-normal text-center text-white align-middle transition-all ease-in border-0 rounded-lg shadow-md cursor-pointer text-xs bg-slate-700 lg:hidden tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">
-                    <i class="ni ni-email-83 text-2.8"></i>
-                  </button>
-                </div>
-              </div>
-
-              <div class="flex-auto p-6 pt-0">
-                <div class="flex flex-wrap -mx-3">
-                  <div class="w-full max-w-full px-3 flex-1-0">
-                    <div class="flex justify-center">
-                      <div class="grid text-center">
-                        <span class="font-bold dark:text-white text-lg">22</span>
-                        <span class="leading-normal dark:text-white text-sm opacity-80">Friends</span>
-                      </div>
-                      <div class="grid mx-6 text-center">
-                        <span class="font-bold dark:text-white text-lg">10</span>
-                        <span class="leading-normal dark:text-white text-sm opacity-80">Photos</span>
-                      </div>
-                      <div class="grid text-center">
-                        <span class="font-bold dark:text-white text-lg">89</span>
-                        <span class="leading-normal dark:text-white text-sm opacity-80">Comments</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="mt-6 text-center">
-                  <h5 class="dark:text-white ">
-                    Mark Davis
-                    <span class="font-light">, 35</span>
-                  </h5>
-                  <div class="mb-2 font-semibold leading-relaxed text-base dark:text-white/80 text-slate-700">
-                    <i class="mr-2 dark:text-white ni ni-pin-3"></i>
-                    {{$user->city}}
-                  </div>
-                  <div class="mt-6 mb-2 font-semibold leading-relaxed text-base dark:text-white/80 text-slate-700">
-                    <i class="mr-2 dark:text-white ni ni-briefcase-24"></i>
-                    Solution Manager - Creative Tim Officer
-                  </div>
-                  <div class="dark:text-white/80">
-                    <i class="mr-2 dark:text-white ni ni-hat-3"></i>
-                    University of Computer Science
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+          {{Form::close()}} --}}
         </div>
         <footer class="pt-4">
           <div class="w-full px-6 mx-auto">
@@ -628,6 +704,35 @@
       </div>
     </div>
   </body>
+  <script>
+    async function actived(id, ad) {      
+      // Пример с fetch запросом
+      const url = `/user/${id}/adboard/${ad}/`;
+      console.log(url);
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'X-CSRF-TOKEN': '{{csrf_token()}}',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id, ad })
+      });
+      const span_active = document.querySelector('#span-actived-' + ad).textContent;
+      if (response.ok) {
+        if (span_active == 'Активно') {
+          document.querySelector('#span-actived-' + ad).textContent = 'Не активно';
+        } else {
+          document.querySelector('#span-actived-' + ad).textContent = 'Активно';
+        }
+        // document.querySelector('#span-actived-' + ad).textContent = 'Активно'
+        console.log(await response.json());
+      } else {
+        console.error('Error:', response.status, response.statusText);
+      }
+      
+      console.log(response);
+    }
+  </script>
   <!-- plugin for scrollbar  -->
   <script src="{{asset("build/assets/js/plugins/perfect-scrollbar.min.js")}}" async></script>
   <!-- main script file  -->

@@ -30,3 +30,8 @@ Route::get('/user/{id}', [Controllers\UserController::class, 'person'])->middlew
 Route::patch('/user/{id}', [Controllers\UserController::class, 'store'])->middleware('auth')->name('user.store');
 
 Route::get('/adboard', [Controllers\AdboardController::class, 'index'])->middleware('auth')->name('adboard.index');
+Route::get('/user/{id}/adboard', [Controllers\AdboardController::class, 'adboard'])->middleware('auth')->name('user.adboard');
+Route::post('/user/{id}/adboard', [Controllers\AdboardController::class, 'add'])->middleware('auth')->name('user.adboard');
+Route::post('/user/{id}/adboard/{adboard_id}', [Controllers\AdboardController::class, 'active'])->middleware('auth')->name('user.adboard.active');
+Route::patch('/user/{id}/adboard/{adboard_id}', [Controllers\AdboardController::class, 'edit'])->middleware('auth')->name('user.adboard.edit');
+Route::delete('/user/{id}/adboard/{adboard_id}', [Controllers\AdboardController::class, 'delete'])->middleware('auth')->name('user.adboard.delete');
