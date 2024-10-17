@@ -29,6 +29,25 @@ class UserController extends Controller
         return back()->with('success', 'Изменения сохранены');
     }
 
+    public function uploadAvatar(Request $request)
+    {
+        if ($request->hasFile('avatar')) {
+            $request->validate([
+                'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
+
+            $filename = time();
+            $path = $request->file('avatar')->move('avatars', $filename);
+
+            $user = auth()->user();
+            $user->avatar = $path;
+            $user->save();
+
+            return response()->json(['avatarUrl' => asset($path)]);
+        }
+
+        return response()->json(['error' => 'Файл не загружен'], 400);
+    }
     
     public function person($id) {
         
