@@ -155,12 +155,10 @@
                 <a class="inline-block px-8 py-2 mb-0 mr-4 font-bold text-center text-white uppercase align-middle transition-all ease-in border border-solid rounded-lg shadow-none cursor-pointer leading-pro border-white/75 bg-white/10 text-xs hover:-translate-y-px active:shadow-xs tracking-tight-rem hover:border-white hover:bg-transparent hover:text-white hover:opacity-75 hover:shadow-none active:bg-white active:text-black active:hover:bg-transparent active:hover:text-white" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard&amp;_ga=2.76518741.1192788655.1647724933-1242940210.1644448053">Online Builder</a>
               </li> -->
               <li class="flex items-center">
-                <a href="../pages/sign-in.html" class="block px-0 py-2 font-semibold text-white transition-all ease-in-out text-sm">
                   {{Form::open(['url' => route('login.logout'), 'method' => 'POST'])}}
                     <i class="fa fa-user sm:mr-1" aria-hidden="true"></i>
                     <input type="submit" class="hidden sm:inline" value="Выйти" style="cursor: pointer">
                   {{Form::close()}}
-                </a>
               </li>
               <li class="flex items-center pl-4 xl:hidden">
                 <a href="javascript:;" class="block p-0 text-white transition-all ease-in-out text-sm" sidenav-trigger>
