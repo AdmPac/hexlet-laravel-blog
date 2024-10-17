@@ -40,6 +40,8 @@ class LoginController extends Controller
         if (Auth::check()) {
             $id = Auth::id();
             return redirect()->route('user.index', $id);
+        } else {
+            return view('login.create');
         }
         $user = new User();
         $user->avatar = 'build/assets/img/default/avatar/flat_blue_1.svg';
