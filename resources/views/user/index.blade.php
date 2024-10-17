@@ -259,7 +259,7 @@
           <div class="flex flex-wrap -mx-3">
             <div class="flex-none w-auto max-w-full px-3">
               <div class="relative inline-flex items-center justify-center text-white transition-all duration-200 ease-in-out text-base h-19 w-19 rounded-xl">
-                <img src="{{asset($user['avatar'])}}" alt="profile_image" class="w-full shadow-2xl rounded-xl" />
+                <img src="{{asset($user['avatar'])}}" alt="profile_image" class="avatar-preview w-full shadow-2xl rounded-xl" />
               </div>
             </div>
             <div class="flex-none w-auto max-w-full px-3 my-auto">
@@ -463,7 +463,56 @@
                 <div class="w-4/12 max-w-full px-3 flex-0 ">
                   <div class="mb-6 -mt-6 lg:mb-0 lg:-mt-16">
                     <a href="javascript:;">
-                      <img class="h-auto max-w-full border-2 border-white border-solid rounded-circle" src="{{asset($user['avatar'])}}" alt="profile image">
+                      
+                      <div class="flex items-center justify-center w-full">
+                        <label for="dropzone-file" class="relative cursor-pointer w-full h-64 flex flex-col items-center justify-center">
+                          <img class="avatar-preview h-auto max-w-full border-2 border-white border-solid rounded-full" src="{{ asset($user['avatar']) }}" alt="profile image">
+                          <input id="dropzone-file" type="file" class="hidden" />
+                          <div class="absolute inset-0 bg-transparent"></div>
+                        </label>
+                      </div>
+                      <script>
+                        document.getElementById('dropzone-file').addEventListener('change', function () {
+                            var file = this.files[0];  // Получаем выбранный файл
+                            var formData = new FormData();  // Создаем объект FormData
+                            formData.append('avatar', file);  // Добавляем файл в FormData
+
+                            var xhr = new XMLHttpRequest();
+                            xhr.open('POST', '{{ route("user.avatar") }}', true);  // Устанавливаем метод и URL
+
+                            // Добавляем заголовок CSRF токена
+                            xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+
+                            // Обработка успешного завершения запроса
+                            xhr.onload = function () {
+                              if (xhr.status === 200) {
+                                try {
+                                    var response = JSON.parse(xhr.responseText);
+                                    console.log(response.avatarUrl);  // Выводим в консоль текст ответа
+                                    const avatars = document.querySelectorAll('.avatar-preview');
+                                    avatars.forEach((avatar) => {
+                                      console.log(avatar.src);
+                                      avatar.src = response.avatarUrl;
+                                    });
+                                    alert('Аватар успешно загружен!');
+                                } catch (e) {
+                                    console.error('Ошибка парсинга JSON:', e);
+                                    alert('Произошла ошибка при загрузке аватарки.');
+                                }
+                            } else {
+                                alert('Произошла ошибка при загрузке аватарки.');
+                            }
+                        };
+
+                            // Обработка ошибки
+                            xhr.onerror = function () {
+                                alert('Ошибка сети.');
+                            };
+
+                            // Отправляем данные на сервер
+                            xhr.send(formData);
+                        });
+                      </script>
                     </a>
                   </div>
                 </div>
